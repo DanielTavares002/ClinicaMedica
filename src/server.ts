@@ -1,9 +1,15 @@
 import express from "express"; //framework utilzado para APIs
+import dotenv from "dotenv";
+import pacienteRoutes from "./routes/pacienteRoutes.js";
+
+dotenv.config();
 
 const app = express();
 app.use(express.json()); //json como padrão nas req e resp http
 
-const PORT: number = 3000;
+const PORT: number = Number(process.env.PORT) || 3001;
+
+app.use(pacienteRoutes);
 
 interface Usuario {
     id: number;
