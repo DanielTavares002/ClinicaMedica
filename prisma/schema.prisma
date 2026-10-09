@@ -9,13 +9,39 @@ datasource db {
 }
 
 model Paciente {
-  id Int @id @default(autoincrement())
-  nome String
-  cpf String @unique
-  telefone String
-  email String @unique
-  criadoEm DateTime @default(now())
-  atualizadoEm DateTime @updatedAt
+  id           Int        @id @default(autoincrement())
+  nome         String
+  cpf          String     @unique
+  telefone     String
+  email        String     @unique
+  criadoEm     DateTime   @default(now())
+  atualizadoEm DateTime   @updatedAt
+  consultas    Consulta[]
 
   @@map("pacientes")
+}
+
+model Medico {
+  id            Int        @id @default(autoincrement())
+  nome          String
+  telefone      String
+  crm           String     @unique
+  especialidade String
+  consultas     Consulta[]
+
+  @@map("medicos")
+}
+
+model Consulta {
+  id             Int      @id @default(autoincrement())
+  dataConsulta   DateTime 
+  motivoConsulta String
+
+  // FKs e relações
+  idPaciente     Int
+  paciente       Paciente @relation(fields: [idPaciente], references: [id])
+  idMedico       Int
+  medico         Medico   @relation(fields: [idMedico], references: [id])
+
+  @@map("consultas")
 }
