@@ -1,26 +1,27 @@
-import type { Medico } from "../interfaces/medicoInterface.js";
+import { prisma } from "../config/prisma.js";
+import type { MedicoDTO } from "../types/medico.js";
 
-const medicos: Medico[] = [
-    {id: 1, nome: "Bruninho", telefone: "83988129232", crm: "102371283", especialidade: "Urologista"},
-    {id: 2, nome: "Kleber", telefone: "83998712872", crm: "12313445", especialidade: "Ginecologista"}
-];
+export async function findAll() {
+  return await prisma.medico.findMany();
+  //SELECT * FROM medicos;
+}
 
-export async function obterMedicos(): Promise<Medico[]> {
-    return medicos;
-};
+export async function findById(id: number) {
+  return await prisma.medico.findUnique({ where: { id } });
+  //SELECT * FROM medicos WHERE id = ?;
+}
 
-export async function obterMedicoPorId(id: number): Promise<Medico | undefined> {
-    return medicos.find((medico) => medico.id === id);
-};
+export async function create(data: MedicoDTO) {
+  return await prisma.medico.create({ data });
+  //INSERT INTO medicos (nome, crm, especialidade) VALUES (?, ?, ?);
+}
 
-export async function criarMedico(){
+export async function update(id: number, data: MedicoDTO) {
+  return await prisma.medico.update({ where: { id }, data });
+  //UPDATE medicos SET nome = ?, crm = ?, especialidade = ? WHERE id = ?;
+}
 
-};
-
-export async function alterarMedico(id: number){
-
-};
-
-export async function deletarMedico(id: number){
-
-};
+export async function remove(id: number) {
+  return await prisma.medico.delete({ where: { id } });
+  //DELETE FROM medicos WHERE id = ?;
+}

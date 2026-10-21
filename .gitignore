@@ -1,35 +1,34 @@
 # Dependências
 node_modules/
 
-# Build / Compilação (TypeScript e JavaScript gerados)
+# Build e testes
 dist/
-build/
-*.tsbuildinfo
+coverage/
 
 # Variáveis de ambiente e segredos
 .env
+.env.*
+.env.local
+!.env.example
 
-# Logs e relatórios de erro
-logs/
+# Logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Testes e cobertura
-coverage/
-.nyc_output/
-
-# Arquivos do Sistema Operacional
+# Sistema operacional
 .DS_Store
 Thumbs.db
 
-# Arquivos de IDEs (VS Code, WebStorm, etc.)
+# Configurações locais
 .vscode/
-.idea/
-*.suo
-*.ntvs*
-*.njsproj
-*.sln
-*.swp
+.agents/
+.claude/
+.cursor/
+.devin/
+
+# Temporários
+*.tmp
+*.temp

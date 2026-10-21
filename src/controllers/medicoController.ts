@@ -1,37 +1,36 @@
 import type { Request, Response } from "express";
 import * as service from "../services/medicoService.js";
-import type { Medico } from "../interfaces/medicoInterface.js";
-import type { MedicoDTO } from "../interfaces/medicoInterface.js";
+import type { MedicoDTO } from "../types/medico.js";
 
-export async function obterMedicos(req: Request, res: Response) {
-    const medicos: Medico[] = await service.obterMedicos();
-    return res.json(medicos)
-};
+export async function listar(req: Request, res: Response) {
+  const medicos = await service.listarMedicos();
+  return res.json(medicos);
+}
 
-export async function obterMedicoPorId(req: Request, res: Response) {
-    const id: number = Number(req.params.id);
-    const medicoEncontrado = await service.obterMedicoPorId(id);
-    if (!medicoEncontrado) res.status(404);
-    res.json(medicoEncontrado);
-};
+export async function buscarPorId(req: Request, res: Response) {
+  const id: number = Number(req.params.id);
+  const medico = await service.encontrarUmMedico(id);
+  if (!medico) {
+    return res.status(404).json({ mensagem: "Médico não encontrado" });
+  }
+  return res.json(medico);
+}
 
-export async function criarMedico(req: Request, res: Response){
-    const dados: MedicoDTO = req.body;
-    if (!dados.nome || !dados.telefone || !dados.crm || !dados.especialidade) {
-        return res.status(400).json("Todos os campos são obrigatórios!")
-    }
+export async function cadastrar(req: Request, res: Response) {
+  const dados: MedicoDTO = req.body;
+  const medico = await service.criarMedico(dados);
+  return res.status(201).json(medico);
+}
 
-    const novoMedico: Medico = await service.criarMedico(dados);
+export async function atualizar(req: Request, res: Response) {
+  const id: number = Number(req.params.id);
+  const dados: MedicoDTO = req.body;
+  const medico = await service.atualizarMedico(id, dados);
+  return res.json(medico);
+}
 
-    if(!novoMedico) res.status(500);
-    res.status(204).json(novoMedico);
-
-};
-
-export async function alterarMedico(req: Request, res: Response){
-
-};
-
-export async function deletarMedico(req: Request, res: Response){
-
-};
+export async function deletar(req: Request, res: Response) {
+  const id: number = Number(req.params.id);
+  await service.deletarMedico(id);
+  return res.status(204).send();
+}
