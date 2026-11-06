@@ -88,11 +88,12 @@ Crie o arquivo `api/.env` a partir do exemplo:
 cp api/.env.example api/.env
 ```
 
-### 5. Gerar o Prisma Client e sincronizar o banco
+### 5. Gerar o Prisma Client, sincronizar o banco e cadastrar os médicos
 ```bash
 cd api
 npx prisma generate
 npx prisma db push
+npx prisma db seed   # cadastra os médicos da clínica
 cd ..
 ```
 

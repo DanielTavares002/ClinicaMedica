@@ -11,6 +11,11 @@ export async function findById(id: number) {
   //SELECT * FROM pacientes WHERE id = ?;
 }
 
+export async function findByCpf(cpf: string) {
+  return await prisma.paciente.findUnique({ where: { cpf } });
+  //SELECT * FROM pacientes WHERE cpf = ?;
+}
+
 export async function create(data: PacienteInput) {
   return await prisma.paciente.create({ data });
   //INSERT INTO pacientes (nome, cpf, telefone) VALUES (?, ?, ?);

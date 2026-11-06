@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Alert, Anchor, Button, Paper, PasswordInput, Stack, Text, TextInput, Title } from '@mantine/core'
+import { Alert, Anchor, Box, Button, PasswordInput, Stack, Text, TextInput, Title } from '@mantine/core'
 import axios from 'axios'
 import { login } from '../services/api.ts'
 
@@ -49,10 +49,9 @@ export function LoginPage() {
   }
 
   return (
-    <Paper withBorder shadow="md" p="xl" radius="md" w="100%" maw={400}>
-      <Text c="blue" fw={700} size="sm">Clínica Médica</Text>
-      <Title order={2}>Entrar</Title>
-      <Text c="dimmed" size="sm" mb="lg">Acesse com seu CPF e senha</Text>
+    <Box w="100%" maw={380}>
+      <Title order={1} fz={32}>Entrar</Title>
+      <Text c="dimmed" mb="xl">Acesse com seu CPF e senha</Text>
 
       <form
         onSubmit={(evento) => {
@@ -86,6 +85,6 @@ export function LoginPage() {
           </Text>
         </Stack>
       </form>
-    </Paper>
+    </Box>
   )
 }

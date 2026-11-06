@@ -1,11 +1,11 @@
-import { Center } from '@mantine/core'
+import { TelaDeEntrada } from './components/TelaDeEntrada.tsx'
 import { LoginPage } from './pages/LoginPage.tsx'
 
 function App() {
   return (
-    <Center mih="100vh" bg="gray.1" p="md">
+    <TelaDeEntrada>
       <LoginPage />
-    </Center>
+    </TelaDeEntrada>
   )
 }
 
