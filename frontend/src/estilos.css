@@ -1,0 +1,27 @@
+/* Campos e botões usam a mesma fonte do resto da página */
+input, select, textarea, button { font-family: inherit; }
+
+/* Texto secundário um pouco mais escuro, para ler melhor */
+:root:root { --mantine-color-dimmed: #4f5e63; }
+
+/* Telefone e CPF não quebram no meio */
+.sem-quebra { white-space: nowrap; }
+
+/* No celular, colunas menos importantes somem da tabela */
+@media (max-width: 48em) {
+  .esconde-no-celular { display: none; }
+  .tabela { --table-horizontal-spacing: 6px !important; }
+}
+
+/* No celular, a faixa da clínica some e o formulário ocupa a tela */
+@media (max-width: 48em) {
+  .tela-de-entrada { grid-template-columns: 1fr !important; }
+  .faixa-da-clinica { display: none !important; }
+}
+
+/* Datas e CPFs com números de largura igual, para alinhar nas tabelas */
+.numeros { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
