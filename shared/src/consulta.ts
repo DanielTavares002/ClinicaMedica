@@ -1,4 +1,6 @@
 import { z } from "zod";
+import type { Medico } from "./medico.ts";
+import type { Paciente } from "./paciente.ts";
 
 export const consultaSchema = z.object({
   data: z
@@ -29,6 +31,9 @@ export const consultaSchema = z.object({
 });
 
 export type ConsultaInput = z.infer<typeof consultaSchema>;
+
+// Formato que a API devolve: a consulta já vem com o médico e o paciente dentro
+export type Consulta = ConsultaInput & { id: number; medico: Medico; paciente: Paciente };
 
 // Schema para os filtros opcionais de consulta na listagem
 export const consultaFiltroSchema = z.object({

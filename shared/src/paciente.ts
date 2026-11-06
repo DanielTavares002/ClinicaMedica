@@ -20,3 +20,6 @@ export const pacienteSchema = z.object({
 });
 
 export type PacienteInput = z.infer<typeof pacienteSchema>;
+
+// Formato que a API devolve
+export type Paciente = PacienteInput & { id: number };

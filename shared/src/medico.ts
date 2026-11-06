@@ -21,3 +21,6 @@ export const medicoSchema = z.object({
 });
 
 export type MedicoInput = z.infer<typeof medicoSchema>;
+
+// Formato que a API devolve
+export type Medico = MedicoInput & { id: number };
